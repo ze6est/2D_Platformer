@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8775603466983646526}
   - component: {fileID: 1736343621713946610}
   - component: {fileID: 4330744637420282149}
-  - component: {fileID: 3503064896669008192}
   - component: {fileID: 2426203418916792969}
   - component: {fileID: -5131634971929914325}
   m_Layer: 0
@@ -121,19 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _path: {fileID: 0}
   _speed: 1
---- !u!114 &3503064896669008192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3686467660875500262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c4b1edf05f0ee44b9e347778f7435a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _coin: {fileID: 4193356724883461601, guid: 21586f51593183546adbdc5f370bc94b, type: 3}
 --- !u!61 &2426203418916792969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022097826, y: -0.030384406}
+  m_Offset: {x: 0.013811171, y: -0.091153294}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.93482685, y: 0.8342668}
+  m_Size: {x: 0.95692456, y: 0.71272904}
   m_EdgeRadius: 0
 --- !u!114 &-5131634971929914325
 MonoBehaviour:
@@ -214,10 +200,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015192226, y: 0.34803978}
+  m_Offset: {x: 0.015192211, y: 0.363232}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -228,7 +214,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9696156, y: 0.16028494}
+  m_Size: {x: 0.9696156, y: 0.19066936}
   m_EdgeRadius: 0
 --- !u!114 &4346648606384029194
 MonoBehaviour:
@@ -242,3 +228,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07976481bf6b8c458d31782f648ae11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinSpawner: {fileID: 0}

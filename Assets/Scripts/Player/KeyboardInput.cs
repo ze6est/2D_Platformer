@@ -1,12 +1,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Mover))]
+[RequireComponent(typeof(Player))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class KeyboardInput : MonoBehaviour
 {     
     [SerializeField] private PlayerAnimator _playerAnimator;
 
     private Mover _mover;
+    private Player _player;
     private SpriteRenderer _spriteRenderer;
     private float _speedIdle = 0f;
     private float _speedWalk = 1f;    
@@ -16,6 +18,7 @@ public class KeyboardInput : MonoBehaviour
     private void Awake()
     {
         _mover = GetComponent<Mover>();
+        _player = GetComponent<Player>();
         _spriteRenderer = GetComponent<SpriteRenderer>();       
     }
 
@@ -33,10 +36,11 @@ public class KeyboardInput : MonoBehaviour
             Move(_speedWalk, true, _directionLeft);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && _player.IsGround)
         {            
             _playerAnimator.Jump();
             _mover.Jump();
+            _player.Jumped();
         }        
     }
 

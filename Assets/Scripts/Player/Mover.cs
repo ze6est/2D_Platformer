@@ -20,6 +20,6 @@ public class Mover : MonoBehaviour
 
     public void Jump()
     {
-        _rigidbody2D.AddForce(Vector2.up * _jumpForce);
+        _rigidbody2D.AddForce(Vector2.up * _jumpForce);        
     }
 }

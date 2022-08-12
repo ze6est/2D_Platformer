@@ -42,10 +42,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01779461, y: 0.3219208}
+  m_Offset: {x: -0.01779461, y: 0.34133315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3850107, y: 0.14909375}
+  m_Size: {x: 1.3850107, y: 0.19438925}
   m_EdgeRadius: 0
 --- !u!114 &7183116164130051026
 MonoBehaviour:
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07976481bf6b8c458d31782f648ae11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinSpawner: {fileID: 0}
 --- !u!1 &4983505241643851029
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +84,6 @@ GameObject:
   - component: {fileID: 4983505241643851030}
   - component: {fileID: 3545872760938711507}
   - component: {fileID: 5874823899327590076}
-  - component: {fileID: 202616465339307920}
   - component: {fileID: -5383573208187950433}
   m_Layer: 0
   m_Name: Bat
@@ -204,22 +204,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0022346969, y: -0.00552106}
-  m_Size: {x: 1.5362248, y: 0.8003472}
+  m_Offset: {x: 0.0022346883, y: -0.07831798}
+  m_Size: {x: 1.5362251, y: 0.65475655}
   m_Direction: 1
---- !u!114 &202616465339307920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4983505241643851029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c4b1edf05f0ee44b9e347778f7435a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _coin: {fileID: 4193356724883461601, guid: 21586f51593183546adbdc5f370bc94b, type: 3}
 --- !u!114 &-5383573208187950433
 MonoBehaviour:
   m_ObjectHideFlags: 0
