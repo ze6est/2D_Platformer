@@ -1,15 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(LinearColorChanger))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(KeyboardInput))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private AudioClip _soundJump;
     [SerializeField] private AudioClip _soundTakingDamage;
     [SerializeField] private AudioClip _soundKillingEnemy;
-    [SerializeField] private AudioClip _soundCoinSelection;
-    [SerializeField] private AudioClip _soundLosing;
-    [SerializeField] private AudioClip _soundWinning;
+    [SerializeField] private AudioClip _soundTookCoin;    
 
     private DestroyerEnemy[] _enemies;
     private Camera _camera;
@@ -17,8 +17,13 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     private int _health = 3;
     private int _money = 0;
+    private UnityEvent _destroyed = new UnityEvent();
 
-    public AudioSource AudioSource { get; private set; }
+    public event UnityAction Destroyed
+    {
+        add => _destroyed.AddListener(value);
+        remove => _destroyed.RemoveListener(value);
+    }
 
     public bool IsGround { get; private set; }
 
@@ -62,17 +67,10 @@ public class Player : MonoBehaviour
 
         if(collider.TryGetComponent<Coin>(out Coin coin))
         {
-            _audioSource.PlayOneShot(_soundCoinSelection);
+            _audioSource.PlayOneShot(_soundTookCoin);
             _money++;
             Destroy(coin.gameObject);
-        }
-
-        if (collider.TryGetComponent<Fountain>(out Fountain fountain))
-        {
-            _audioSource.PlayOneShot(_soundWinning);
-            KeyboardInput keyboardInput = GetComponent<KeyboardInput>();
-            keyboardInput.enabled = false;
-        }
+        }        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -85,6 +83,7 @@ public class Player : MonoBehaviour
 
     public void Jumped()
     {
+        _audioSource.PlayOneShot(_soundJump);
         IsGround = false;
     }
 
@@ -97,8 +96,8 @@ public class Player : MonoBehaviour
         if (_health <= 0)
         {
             _camera.transform.parent = null;
-            _audioSource.PlayOneShot(_soundLosing);
-            Destroy(gameObject);
+            _destroyed.Invoke();            
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
     }
 
