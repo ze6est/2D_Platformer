@@ -1,23 +1,23 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(LinearColorChanger))]
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(KeyboardInput))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private AudioClip _soundJump;
-    [SerializeField] private AudioClip _soundTakingDamage;
-    [SerializeField] private AudioClip _soundKillingEnemy;
-    [SerializeField] private AudioClip _soundTookCoin;    
-
-    private DestroyerEnemy[] _enemies;
-    private Camera _camera;
-    private LinearColorChanger _linearColorChanger;
-    private AudioSource _audioSource;
+    [SerializeField] private Fountain _fountain;
+    
+    private Camera _camera;    
+    
+    private KeyboardInput _keyboardInput;
     private int _health = 3;
     private int _money = 0;
     private UnityEvent _destroyed = new UnityEvent();
+    private UnityEvent _damageTaken = new UnityEvent();
+    private UnityEvent _enemyKilled = new UnityEvent();
+    private UnityEvent _coinTaken = new UnityEvent();
+
+    public bool IsGround { get; private set; } = false;
+    public bool PlayerIsAlive { get; private set; } = true;
 
     public event UnityAction Destroyed
     {
@@ -25,31 +25,40 @@ public class Player : MonoBehaviour
         remove => _destroyed.RemoveListener(value);
     }
 
-    public bool IsGround { get; private set; }
+    public event UnityAction DamageTaken
+    {
+        add => _damageTaken.AddListener(value);
+        remove => _damageTaken.RemoveListener(value);
+    }
+
+    public event UnityAction EnemyKilled
+    {
+        add => _enemyKilled.AddListener(value);
+        remove => _enemyKilled.RemoveListener(value);
+    }
+
+    public event UnityAction CoinTaken
+    {
+        add => _coinTaken.AddListener(value);
+        remove => _coinTaken.RemoveListener(value);
+    }
 
     private void Awake()
-    {
-        _enemies = FindObjectsOfType<DestroyerEnemy>();
+    {        
         _camera = GetComponentInChildren<Camera>();
-        _linearColorChanger = GetComponent<LinearColorChanger>();
-        _audioSource = GetComponent<AudioSource>();
-        IsGround = false;
+        _keyboardInput = GetComponent<KeyboardInput>();
     }
 
     private void OnEnable()
     {
-        foreach(DestroyerEnemy enemy in _enemies)
-        {
-            enemy.Destroyed += PlaySoundMurder;
-        }
+        _fountain.ReachedEndLevel += DisableController;
+        _keyboardInput.Jumped += BlockJump;
     }
 
     private void OnDisable()
     {
-        foreach (DestroyerEnemy enemy in _enemies)
-        {
-            enemy.Destroyed -= PlaySoundMurder;
-        }
+        _fountain.ReachedEndLevel += DisableController;
+        _keyboardInput.Jumped -= BlockJump;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -67,7 +76,7 @@ public class Player : MonoBehaviour
 
         if(collider.TryGetComponent<Coin>(out Coin coin))
         {
-            _audioSource.PlayOneShot(_soundTookCoin);
+            _coinTaken.Invoke();
             _money++;
             Destroy(coin.gameObject);
         }        
@@ -79,30 +88,29 @@ public class Player : MonoBehaviour
         {
             IsGround = true;
         }                
-    }
-
-    public void Jumped()
-    {
-        _audioSource.PlayOneShot(_soundJump);
-        IsGround = false;
-    }
+    }    
 
     private void TakeDamage()
     {
-        _audioSource.PlayOneShot(_soundTakingDamage);
-        _health--;
-        _linearColorChanger.StartColorChanging();
+        _damageTaken.Invoke();
+        _health--;        
 
         if (_health <= 0)
         {
+            DisableController();
             _camera.transform.parent = null;
             _destroyed.Invoke();            
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
+    }    
+    
+    private void DisableController()
+    {
+        PlayerIsAlive = false;
     }
 
-    private void PlaySoundMurder()
+    private void BlockJump()
     {
-        _audioSource.PlayOneShot(_soundKillingEnemy);
+        IsGround = false;
     }
 }

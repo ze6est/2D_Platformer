@@ -14,8 +14,7 @@ public class Fountain : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.TryGetComponent<Player>(out Player player))
-        {
-            gameObject.GetComponent<Collider2D>().enabled = false;
+        {            
             _reachedEndLevel.Invoke();
         }
     }

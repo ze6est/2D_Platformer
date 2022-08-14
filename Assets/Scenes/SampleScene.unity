@@ -685,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f26dd38e25a0db4b815b167630a2905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAnimator: {fileID: 918587434}
 --- !u!212 &918587429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -846,10 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afcf4cd6ee5dd24b8072afb5821bd05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundJump: {fileID: 8300000, guid: 984f86958d157d44aa940adc49c6b4b1, type: 3}
-  _soundTakingDamage: {fileID: 8300000, guid: e492a18528853df478e6a83779b05420, type: 3}
-  _soundKillingEnemy: {fileID: 8300000, guid: 0f1e8e549b768bb4d9bfc797872f9dcc, type: 3}
-  _soundTookCoin: {fileID: 8300000, guid: 6c8d82b46aacd4242a4028dd077f54ef, type: 3}
+  _fountain: {fileID: 1330631108}
 --- !u!114 &918587437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14125,7 +14121,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundLosing: {fileID: 8300000, guid: 2c8f3871e234efb43876e89567e66748, type: 3}
   _soundWinning: {fileID: 8300000, guid: 780b1870f19dc3d408b71590328ca85d, type: 3}
-  _sonndsdAudioSource: {fileID: 1719127991}
+  _soundJump: {fileID: 8300000, guid: 984f86958d157d44aa940adc49c6b4b1, type: 3}
+  _soundTakingDamage: {fileID: 8300000, guid: e492a18528853df478e6a83779b05420, type: 3}
+  _soundKillingEnemy: {fileID: 8300000, guid: 0f1e8e549b768bb4d9bfc797872f9dcc, type: 3}
+  _soundTookCoin: {fileID: 8300000, guid: 6c8d82b46aacd4242a4028dd077f54ef, type: 3}
+  _soundsAudioSource: {fileID: 1719127991}
+  _player: {fileID: 918587436}
+  _fountain: {fileID: 1330631108}
+  _keyboardInput: {fileID: 918587428}
+  _enemiesContainer: {fileID: 2114149365}
 --- !u!4 &1719127990
 Transform:
   m_ObjectHideFlags: 0
@@ -14529,7 +14533,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2114149366}
-  - component: {fileID: 2114149368}
   - component: {fileID: 2114149367}
   m_Layer: 0
   m_Name: Enemies
@@ -14574,18 +14577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coin: {fileID: 4193356724883461601, guid: 21586f51593183546adbdc5f370bc94b, type: 3}
---- !u!114 &2114149368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114149365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb721b5ba245244fa20c2c90b105124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2123227117
 GameObject:
   m_ObjectHideFlags: 0
