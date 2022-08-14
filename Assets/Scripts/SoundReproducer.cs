@@ -10,7 +10,7 @@ public class SoundReproducer : MonoBehaviour
     [SerializeField] private AudioClip _soundKillingEnemy;
     [SerializeField] private AudioClip _soundTookCoin;
     [SerializeField] private AudioSource _soundsAudioSource;
-    [SerializeField] private Player _player;
+    [SerializeField] private Player _player;    
     [SerializeField] private Fountain _fountain;
     [SerializeField] private KeyboardInput _keyboardInput;
     [SerializeField] private GameObject _enemiesContainer;
@@ -22,7 +22,7 @@ public class SoundReproducer : MonoBehaviour
         _enemies = _enemiesContainer.GetComponentsInChildren<DestroyerEnemy>();
         _player.Destroyed += PlaySoundLosing;
         _keyboardInput.Jumped += PlaySoundJump;
-        _player.DamageTaken += PlaySoundTakingDamage;
+        _player.DamageTaken += PlaySoundTakingDamage;        
         _fountain.ReachedEndLevel += PlaySoundWinning;
         _player.CoinTaken += PlaySounTookCoin;
 
@@ -36,7 +36,7 @@ public class SoundReproducer : MonoBehaviour
     {
         _player.Destroyed -= PlaySoundLosing;
         _keyboardInput.Jumped -= PlaySoundJump;
-        _player.DamageTaken -= PlaySoundTakingDamage;
+        _player.DamageTaken -= PlaySoundTakingDamage;        
         _fountain.ReachedEndLevel -= PlaySoundWinning;
         _player.CoinTaken -= PlaySounTookCoin;
 

@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -456,6 +457,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ef2d03714b1974aa1751a7f3eeaa9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -685,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f26dd38e25a0db4b815b167630a2905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ground: {fileID: 1125071000}
 --- !u!212 &918587429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1141,6 +1155,7 @@ GameObject:
   - component: {fileID: 1125070997}
   - component: {fileID: 1125070999}
   - component: {fileID: 1125070998}
+  - component: {fileID: 1125071000}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -13324,6 +13339,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1125071000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125070993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91d62f4e8b1fa54793d5db7013f8c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyboardInput: {fileID: 918587428}
 --- !u!1 &1156171319
 GameObject:
   m_ObjectHideFlags: 0

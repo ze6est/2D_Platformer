@@ -8,4 +8,12 @@ public class Coin : MonoBehaviour
     {
         transform.position = new Vector2(transform.position.x + _offset, transform.position.y - _offset);
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.TryGetComponent<Player>(out Player player))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

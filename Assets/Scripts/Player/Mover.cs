@@ -14,13 +14,8 @@ public class Mover : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private int _directionRight = 1;
     private int _directionLeft = -1;
-    private UnityEvent _ran = new UnityEvent();
 
-    public event UnityAction Ran
-    {
-        add => _ran.AddListener(value);
-        remove => _ran.RemoveListener(value);
-    }
+    public event UnityAction Ran;    
 
     private void Awake()
     {        
@@ -45,20 +40,23 @@ public class Mover : MonoBehaviour
 
     private void MoveRight()
     {
-        _spriteRenderer.flipX = false;
-        _ran.Invoke();
-        transform.Translate(_speed * _directionRight * Time.deltaTime, 0, 0);
+        Move(false, _directionRight);        
     }
 
     private void MoveLeft()
     {
-        _spriteRenderer.flipX = true;
-        _ran.Invoke();
-        transform.Translate(_speed * _directionLeft * Time.deltaTime, 0, 0);
+        Move(true, _directionLeft);        
     }
 
     private void Jump()
     {
         _rigidbody2D.AddForce(Vector2.up * _jumpForce);        
+    }
+
+    private void Move(bool flipXOn, int direction)
+    {
+        _spriteRenderer.flipX = flipXOn;
+        Ran.Invoke();
+        transform.Translate(_speed * direction * Time.deltaTime, 0, 0);
     }
 }
