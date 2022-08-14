@@ -27,26 +27,16 @@ public class Mover : MonoBehaviour
     private void OnEnable()
     {
         _keyboardInput.Jumped += Jump;
-        _keyboardInput.RanRight += MoveRight;
-        _keyboardInput.RanLeft += MoveLeft;
+        _keyboardInput.RanRight += () => Move(false, _directionRight);
+        _keyboardInput.RanLeft += () => Move(true, _directionLeft);
     }
 
     private void OnDisable()
     {
         _keyboardInput.Jumped -= Jump;
-        _keyboardInput.RanRight -= MoveRight;
-        _keyboardInput.RanLeft -= MoveLeft;
-    }
-
-    private void MoveRight()
-    {
-        Move(false, _directionRight);        
-    }
-
-    private void MoveLeft()
-    {
-        Move(true, _directionLeft);        
-    }
+        _keyboardInput.RanRight -= () => Move(false, _directionRight);
+        _keyboardInput.RanLeft -= () => Move(true, _directionLeft);
+    }    
 
     private void Jump()
     {

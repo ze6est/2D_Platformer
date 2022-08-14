@@ -24,7 +24,7 @@ public class KeyboardInput : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow) && _player.PlayerIsAlive)
         {
-            RanRight.Invoke();
+            RanRight.Invoke();            
         }        
 
         if (Input.GetKey(KeyCode.LeftArrow) && _player.PlayerIsAlive)

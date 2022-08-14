@@ -20,59 +20,34 @@ public class SoundReproducer : MonoBehaviour
     private void OnEnable()
     {
         _enemies = _enemiesContainer.GetComponentsInChildren<DestroyerEnemy>();
-        _player.Destroyed += PlaySoundLosing;
-        _keyboardInput.Jumped += PlaySoundJump;
-        _player.DamageTaken += PlaySoundTakingDamage;        
-        _fountain.ReachedEndLevel += PlaySoundWinning;
-        _player.CoinTaken += PlaySounTookCoin;
+        _player.Destroyed += () => PlaySound(_soundLosing);
+        _keyboardInput.Jumped += () => PlaySound(_soundJump);
+        _player.DamageTaken += () => PlaySound(_soundTakingDamage);
+        _fountain.ReachedEndLevel += () => PlaySound(_soundWinning);
+        _player.CoinTaken += () => PlaySound(_soundTookCoin);
 
         foreach (DestroyerEnemy enemy in _enemies)
         {
-            enemy.Destroyed += PlaySounKillinEnemy;
+            enemy.Destroyed += () => PlaySound(_soundKillingEnemy);
         }
     }
 
     private void OnDisable()
     {
-        _player.Destroyed -= PlaySoundLosing;
-        _keyboardInput.Jumped -= PlaySoundJump;
-        _player.DamageTaken -= PlaySoundTakingDamage;        
-        _fountain.ReachedEndLevel -= PlaySoundWinning;
-        _player.CoinTaken -= PlaySounTookCoin;
+        _player.Destroyed -= () => PlaySound(_soundLosing);
+        _keyboardInput.Jumped -= () => PlaySound(_soundJump);
+        _player.DamageTaken -= () => PlaySound(_soundTakingDamage);
+        _fountain.ReachedEndLevel -= () => PlaySound(_soundWinning);
+        _player.CoinTaken -= () => PlaySound(_soundTookCoin);
 
         foreach (DestroyerEnemy enemy in _enemies)
         {
-            enemy.Destroyed -= PlaySounKillinEnemy;
+            enemy.Destroyed -= () => PlaySound(_soundKillingEnemy);
         }
-    }    
-
-    private void PlaySoundLosing()
-    {
-        _soundsAudioSource.PlayOneShot(_soundLosing);
     }
-
-    private void PlaySoundWinning()
+    
+    private void PlaySound(AudioClip audioClip)
     {
-        _soundsAudioSource.PlayOneShot(_soundLosing);
-    }
-
-    private void PlaySoundJump()
-    {
-        _soundsAudioSource.PlayOneShot(_soundJump);
-    }
-
-    private void PlaySoundTakingDamage()
-    {
-        _soundsAudioSource.PlayOneShot(_soundTakingDamage);
-    }
-
-    private void PlaySounKillinEnemy()
-    {
-        _soundsAudioSource.PlayOneShot(_soundKillingEnemy);
-    }
-
-    private void PlaySounTookCoin()
-    {
-        _soundsAudioSource.PlayOneShot(_soundTookCoin);
+        _soundsAudioSource.PlayOneShot(audioClip);
     }
 }
